@@ -43,53 +43,60 @@
 // Print the individual scores of the players whenever a player scores in separate new lines.
 
 // Print the total score for each player in the last two lines of the output at the end of the game
+// You are using GCC
+// You are using GCC
+// You are using GCC
 #include <iostream>
 using namespace std;
+int compute(int i, int ascore,int* arr);
+void main2(int ascore ,int* arr, int bscore, int acount, int bcount,int n);
 int main(){
-    int input,ascore(0),bscore(0);
-    cin >>input;
-    int* arr = new int[input];
-    for(int i =0;i<input;i++){
-        cin >> arr[i];}
-    for(int i=0;i<input;i++){
-        if(i%2!=0){
-        if(arr[i]==1 && arr[i+1]<=11 && arr[i+2]<=11 && arr[i+3]<=11 && arr[i+4]<=11){
-            cout<<"Player A scores4point(s)"<<endl;
-            ascore+=4;
-
+    int n,ascore(0),acount(0),bcount(0),bscore(0);
+    cin >> n;
+    int* arr = new int[n];
+    for(int i =0;i<n;i++){
+        cin >> arr[i];
+    
+    }
+    main2(0,arr,0,0,0,n);
+    cout <<"Player A:"<<acount<<"point(s)"<<endl;
+    cout <<"Player B:" << bcount << "point(s)"<<endl;
+    return 0;
+    
+}
+        int compute(int i,int ascore,int* arr){
+        if(arr[i]==1 && arr[i+1]<11 && arr[i+2] <11 && arr[i+2] < 11 && arr[i+3] <11 && arr[i+4] < 11 && arr[i+1]!=1 && arr[i+2]<11 && arr[i+3]!=1 && arr[i+4]!=1)
+        {
+           ascore=4; 
         }
-        else if(arr[i]==11 && arr[i+1]<=11 && arr[i+1]!=1 ){
-            cout<<"Player A scores1point(s)"<<endl;
-            ascore+=1;
-        }else if(arr[i]==12 && arr[i+1]<=11 && arr[i+2]<=11  && arr[i+1]!=1 && arr[i+2]!=1 ){
-            cout<<"Player A scores2point(s)"<<endl;
-            ascore+=2;
-        }else if(arr[i]==13 && arr[i+1]<=11 && arr[i+2]<=11 && arr[i+3]<=11 && arr[i+1]!=1 && arr[i+2]!=1 && arr[i+3]!=1 ){
-            cout<<"Player A scores3point(s)"<<endl;
-            ascore+=3;
+        else if(arr[i]==13 && arr[i+1]<11 && arr[i+2]<11 && arr[i+3]<11 && arr[i]!=1 && arr[i+1]!=1 && arr[i+2]!=1 && arr[i+3]!=1)
+        {
+            ascore=3;
+            
         }
+        else if(arr[i]==12 && arr[i+1]<11 && arr[i+2]<11 && arr[i+1] != 1 && arr[i+2]!=1){
+            ascore=2;
+        }
+        else if(arr[i]==11 && arr[i+1]<11 && arr[i+1]!=1){
+            ascore =1;
         }
         else{
-            if(arr[i]==1 && arr[i+1]<=11 && arr[i+2]<=11 && arr[i+3]<=11 && arr[i+4]<=11){
-            cout<<"Player A scores4point(s)"<<endl;
-            ascore+=4;
-
+            ascore=0;
         }
-        else if(arr[i]==11 && arr[i+1]<=11 && arr[i+1]!=1 ){
-            cout<<"Player A scores1point(s)"<<endl;
-            ascore+=1;
-        }else if(arr[i]==12 && arr[i+1]<=11 && arr[i+2]<=11  && arr[i+1]!=1 && arr[i+2]!=1 ){
-            cout<<"Player A scores2point(s)"<<endl;
-            ascore+=2;
-        }else if(arr[i]==13 && arr[i+1]<=11 && arr[i+2]<=11 && arr[i+3]<=11 && arr[i+1]!=1 && arr[i+2]!=1 && arr[i+3]!=1 ){
-            cout<<"Player A scores3point(s)"<<endl;
-            ascore+=3;
-        }
-
-        }
-
-        }
+        return ascore;
+    }
+    void main2(int ascore, int* arr , int bscore, int acount, int bcount,int n){
+    for(int i=0;i<n;i++){
+        if(i%2!=0 || i ==0){
+            ascore =compute(i,ascore,arr);
+            acount+=ascore;
+            if(ascore>0){
+            cout<<"Player A scores"<<ascore<<"point(s)"<<endl;}}
         
-        cout << "Player A:"<<ascore<<"point(s)"<<endl;
-        cout<<"Player B:"<<bscore<<"point(s)"<<endl;
-        }
+        else{
+            bscore = compute(i,bscore,arr);
+            bcount += bscore;
+            if(bscore>0){
+            cout<<"Player B scores"<<bscore<<"point(s)"<<endl;       } }
+    }}
+    
