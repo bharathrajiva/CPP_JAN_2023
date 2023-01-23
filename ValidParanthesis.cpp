@@ -3,7 +3,7 @@
 using namespace std;
 class Solution {
     public:
-    bool inValid(string s, string bracket[]){
+    bool isValid(string s, string bracket[]){
         int i = 0;
         while(i < s.length()){
             if(s[i] == bracket[0][0] && s[i+1] == bracket[0][1]){
@@ -36,6 +36,6 @@ int main(){
     string bracket[3] = {"()", "{}", "[]"};
     cin >> s1;
     Solution s;
-    cout << s.inValid(s1,bracket) << endl;
+    cout<<boolalpha<< s.isValid(s1,bracket) << endl;
     return 0;
 }
