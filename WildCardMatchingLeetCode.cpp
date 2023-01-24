@@ -1,31 +1,33 @@
-#include<iostream>
-#include<cstring>
+#include <iostream>
+#include <string>
+
 using namespace std;
-class Solution {
-    public:
-    bool isMaych(string s,string p){
-    int len0 = s.length();
-    int count =0;
-    int len1 = p.length();
-    for(int i=0;i<len1;i++){
-        if(p[i]==s[i]||p[i]=='?'){
-            count +=1;
+
+bool isMatch(string s, string p) {
+    int m = s.length();
+    int n = p.length();
+    int i = 0, j = 0, star = -1, match = 0;
+    while (i < m) {
+        if (j < n && p[j] == '*') {
+            match = i;
+            star = j++;
+        } else if (j < n && (s[i] == p[j] || p[j] == '?')) {
+            i++;
+            j++;
+        } else if (star != -1) {
+            i = ++match;
+            j = star + 1;
+        } else {
+            return false;
         }
-        if(p[i]=='*'){
-            return true;
-        }
-
     }
-    if(count == len0){
-        return true;
-    }
-    else return false;
+    while (j < n && p[j] == '*') j++;
+    return j == n;
+}
 
-    }};
-int main(){
-    string s,p;
-    cin >> s>>p;
-    Solution s1;
-    cout<<boolalpha<<s1.isMaych(s,p);
-
+int main() {
+    string s, p;
+    cin >> s >> p;
+    cout << boolalpha << isMatch(s, p) << endl;
+    return 0;
 }
