@@ -1,3 +1,7 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
 class Solution {
 public:
     int jump(vector<int>& nums) {
@@ -18,3 +22,15 @@ public:
         return step;
     }
 };
+int main(){
+    int n;
+    vector<int> nums={};
+    cin>>n;
+    for(int i=0;i<n;i++){
+        int temp;
+        cin>>temp;
+        nums.push_back(temp);
+    }
+    Solution s;
+    cout<<s.jump(nums);
+}
